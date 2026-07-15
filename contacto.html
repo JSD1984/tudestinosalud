@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6858538787372520"
+     crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-6858538787372520">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — Destino Salud</title>
+<meta name="description" content="¿Tienes una duda, una sugerencia o quieres proponer un tema? Escríbenos. En Destino Salud leemos todos los mensajes.">
+<meta property="og:title" content="Contacto — Destino Salud">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230f3d46'/><path d='M32 14v36M14 32h36' stroke='%2312a2a8' stroke-width='7' stroke-linecap='round'/><circle cx='32' cy='32' r='7' fill='%23ef8a3c'/></svg>">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Destino Salud — inicio">
+      <svg class="logo-ico" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" fill="#0f3d46"/><path d="M32 14v36M14 32h36" stroke="#12a2a8" stroke-width="7" stroke-linecap="round"/><circle cx="32" cy="32" r="7" fill="#ef8a3c"/>
+      </svg>
+      <span class="wm"><b>Destino<span>Salud</span></b><small>Turismo médico, estético y de bienestar</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="cirugia-estetica.html">Estética</a>
+      <a href="turismo-dental.html">Dental</a>
+      <a href="destinos-bienestar.html">Destinos y bienestar</a>
+      <a href="blog.html">Guías</a>
+      <a class="cta" href="index.html#newsletter">Suscríbete</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Contacto</span>
+    <h1>Hablemos</h1>
+    <p>¿Una duda sobre una guía, una sugerencia o un tema que te gustaría que tratáramos? Escríbenos. Leemos todos los mensajes.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:14px">
+  <div class="wrap" style="max-width:640px">
+    <form class="widget" onsubmit="alert('¡Gracias! Conectaremos este formulario al publicar el sitio.'); return false;" style="display:grid;gap:16px">
+      <div>
+        <label style="font-size:14px;font-weight:600;color:var(--navy);display:block;margin-bottom:6px">Tu nombre</label>
+        <input type="text" required style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px">
+      </div>
+      <div>
+        <label style="font-size:14px;font-weight:600;color:var(--navy);display:block;margin-bottom:6px">Tu email</label>
+        <input type="email" required style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px">
+      </div>
+      <div>
+        <label style="font-size:14px;font-weight:600;color:var(--navy);display:block;margin-bottom:6px">Mensaje</label>
+        <textarea required rows="5" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px;resize:vertical"></textarea>
+      </div>
+      <button class="btn btn-teal" type="submit" style="justify-content:center">Enviar mensaje</button>
+    </form>
+    <p style="text-align:center;color:var(--ink-soft);font-size:14px;margin-top:18px">También puedes escribirnos a <strong>hola@destinosalud.com</strong></p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="legal">
+      <span><a href="privacidad.html" style="color:var(--teal);font-weight:600">Política de privacidad</a></span>
+      <span>© 2026 Destino Salud. Contenido informativo, no consejo médico.</span>
+      <span>www.destinosalud.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.menu-btn')?.addEventListener('click', () => {
+    const nav = document.querySelector('.nav');
+    const open = nav.style.display === 'flex';
+    nav.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:82px;right:24px;background:#fff;padding:18px 22px;border-radius:14px;box-shadow:var(--shadow);gap:16px';
+  });
+</script>
+</body>
+</html>

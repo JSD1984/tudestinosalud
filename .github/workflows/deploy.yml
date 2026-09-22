@@ -1,0 +1,59 @@
+name: Deploy to Plesk
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to Plesk
+        env:
+          PLESK_PASS: ${{ secrets.PLESK_PASS }}
+        run: |
+          REMOTE="root@gestdentcanarias.com:/var/www/vhosts/tudestinosalud.com/httpdocs"
+
+          # Sync HTML pages
+          sshpass -p "$PLESK_PASS" scp -o StrictHostKeyChecking=no \
+            index.html blog.html contacto.html privacidad.html sobre.html \
+            cirugia-estetica.html turismo-dental.html destinos-bienestar.html \
+            sitemap.xml robots.txt ads.txt \
+            $REMOTE/ || true
+
+          # Sync articles directory
+          sshpass -p "$PLESK_PASS" ssh -o StrictHostKeyChecking=no \
+            root@gestdentcanarias.com \
+            "mkdir -p /var/www/vhosts/tudestinosalud.com/httpdocs/articulos"
+
+          sshpass -p "$PLESK_PASS" scp -o StrictHostKeyChecking=no \
+            articulos/*.html \
+            root@gestdentcanarias.com:/var/www/vhosts/tudestinosalud.com/httpdocs/articulos/
+
+          # Sync CSS
+          sshpass -p "$PLESK_PASS" ssh -o StrictHostKeyChecking=no \
+            root@gestdentcanarias.com \
+            "mkdir -p /var/www/vhosts/tudestinosalud.com/httpdocs/css"
+
+          sshpass -p "$PLESK_PASS" scp -o StrictHostKeyChecking=no \
+            css/* \
+            root@gestdentcanarias.com:/var/www/vhosts/tudestinosalud.com/httpdocs/css/ || true
+
+          # Fix permissions
+          sshpass -p "$PLESK_PASS" ssh -o StrictHostKeyChecking=no \
+            root@gestdentcanarias.com \
+            "find /var/www/vhosts/tudestinosalud.com/httpdocs -type f -exec chmod 644 {} \; && \
+             find /var/www/vhosts/tudestinosalud.com/httpdocs -type d -exec chmod 755 {} \;"
+
+      - name: Verify deploy
+        run: |
+          sleep 3
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.tudestinosalud.com/)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then exit 1; fi
